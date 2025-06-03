@@ -19,4 +19,4 @@ jobs:
         if: false          #Este paso no se ejecutará porque la condición es falsa
         run: echo "Hola Mundo segundo!"
       - name: Hola Mundo segundo 2
-        run: echo "Hola Mundo segundo 2, este si se ejecuta!"
+        run: echo "Hola Mundo segundo 2, este si se ejecuta! ${{ github.ref }}"
