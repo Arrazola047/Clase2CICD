@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Hola Mundo!
-        run: echo "Hola Mundo!"
+        run: cat hola.txt
   second_job:
     needs: first_job        #Este job necesita que el primer job termine exitosamente, de lo contrario no se ejecutará. Definimos needs para que no se ejecute el segundo job de manera paralela con el priomero
     runs-on: ubuntu-latest
