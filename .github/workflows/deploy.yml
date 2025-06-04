@@ -10,13 +10,7 @@ jobs:
       NAME: CodigoFacilitoArrazola
     steps:
       - name: Working dir
-        run: ls -al
-
-      - name: Action
-        uses: actions/checkout@v4
-
-      - name: Working dir After checkout
-        run: ls -al
+        run: echo $GITHUB_WORKSPACE
 
 
   second_job:
