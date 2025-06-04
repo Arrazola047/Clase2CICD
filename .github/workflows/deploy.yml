@@ -10,7 +10,11 @@ jobs:
       NAME: CodigoFacilitoArrazola
     steps:
       - name: Working dir
+        id: step_1 #Tenemos que definir un id para poder usar el output de este paso en otros pasos
         run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT  #Agregamos una variable de entorno al entorno de GitHub, esta variable se puede usar en cualquier parte del workflow
+      
+      - name: Obtener variable
+        run: echo "${{ steps.step_1.outputs.my_variable}}"  #Obtenemos la variable que agregamos en el paso anterior
 
 
   second_job:
