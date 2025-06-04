@@ -5,22 +5,30 @@ on: push
 jobs:
   first_job:
     name: Primer Job
+
+    outputs: 
+      salida: ${{ steps.step_1.outputs.my_variable}} #Asi podemos definir outup a nivel job, esta variable se puede usar en otro job
+
     runs-on: ubuntu-latest
     env:
       NAME: CodigoFacilitoArrazola
+
     steps:
       - name: Working dir
         id: step_1 #Tenemos que definir un id para poder usar el output de este paso en otros pasos
         run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT  #Agregamos una variable de entorno al entorno de GitHub, esta variable se puede usar en cualquier parte del workflow
       
       - name: Obtener variable
-        run: echo "${{ steps.step_1.outputs.my_variable}}"  #Obtenemos la variable que agregamos en el paso anterior
+        run: echo "${{ steps.step_1.outputs.my_variable}}"  #Obtenemos la variable que agregamos en el paso anterior, de esta manera obtenemos variables a nivel step (dentro del mismo job)
 
 
   second_job:
     if: ${{github.ref == 'refs/heads/main'}}      #Este job solo se ejecutará si el push es a la rama main, NOTA, solo se puede agrear un if por job
     needs: first_job        #Este job necesita que el primer job termine exitosamente, de lo contrario no se ejecutará. Definimos needs para que no se ejecute el segundo job de manera paralela con el priomero
     runs-on: ubuntu-latest
+
+    env:
+      SALIDA: ${{ needs.first_job.outputs.salida }} #Accedemos al output del primer job, de esta manera podemos pasar variables entre jobs
 
     steps:
       - name: Hola Mundo segundo
@@ -29,3 +37,6 @@ jobs:
 
       - name: Hola Mundo segundo 2
         run: echo "Hola Mundo segundo 2, este si se ejecuta! ${{ github.ref }}"
+
+      - name: Variable del primer job
+        run: echo "$SALIDA"  
