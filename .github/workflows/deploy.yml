@@ -55,7 +55,7 @@ jobs:
 
     
   third_job:
-    needs: second_job  #Este job necesita que el segundo job termine exitosamente, de lo contrario no se ejecutará
+    needs: first_job  #Este job necesita que el segundo job termine exitosamente, de lo contrario no se ejecutará
     runs-on: ubuntu-latest
 
     steps:
