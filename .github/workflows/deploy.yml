@@ -4,6 +4,7 @@ on: push
 
 jobs:
   first_job:
+    name: Primer Job
     runs-on: ubuntu-latest
     env:
       NAME: CodigoFacilitoArrazola
