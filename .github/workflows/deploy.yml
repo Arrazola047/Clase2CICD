@@ -52,3 +52,17 @@ jobs:
 
       - name: Variable del primer job
         run: echo "$SALIDA"  
+
+    
+  third_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar artefacto
+        uses: actions/download-artifact@v4
+        with:
+          name: archivo-text
+      
+      - name: Cat file
+        run: cat archivo.txt
+      
