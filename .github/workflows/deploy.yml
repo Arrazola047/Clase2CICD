@@ -10,7 +10,7 @@ jobs:
       NAME: CodigoFacilitoArrazola
     steps:
       - name: Working dir
-        run: echo $GITHUB_WORKSPACE
+        run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT  #Agregamos una variable de entorno al entorno de GitHub, esta variable se puede usar en cualquier parte del workflow
 
 
   second_job:
