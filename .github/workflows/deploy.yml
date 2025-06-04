@@ -14,6 +14,18 @@ jobs:
       NAME: CodigoFacilitoArrazola
 
     steps:
+      - name: Generar archivo
+        run: |
+          echo "Hola Mundo" >> archivo.txt
+          echo "Este es un archivo de prueba" >> archivo.txt
+          echo "El nombre del proyecto es $NAME" >> archivo.txt 
+
+      - name: Subir artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivo-text
+          path: archivo.txt
+
       - name: Working dir
         id: step_1 #Tenemos que definir un id para poder usar el output de este paso en otros pasos
         run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT  #Agregamos una variable de entorno al entorno de GitHub, esta variable se puede usar en cualquier parte del workflow
