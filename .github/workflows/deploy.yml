@@ -17,6 +17,8 @@ jobs:
 
       - name: Working dir After checkout
         run: ls -al
+
+
   second_job:
     if: ${{github.ref == 'refs/heads/main'}}      #Este job solo se ejecutará si el push es a la rama main, NOTA, solo se puede agrear un if por job
     needs: first_job        #Este job necesita que el primer job termine exitosamente, de lo contrario no se ejecutará. Definimos needs para que no se ejecute el segundo job de manera paralela con el priomero
@@ -26,5 +28,6 @@ jobs:
       - name: Hola Mundo segundo
         if: false          #Este paso no se ejecutará porque la condición es falsa
         run: echo "Hola Mundo segundo, este step no se ejecutara!"
+        
       - name: Hola Mundo segundo 2
         run: echo "Hola Mundo segundo 2, este si se ejecuta! ${{ github.ref }}"
