@@ -14,6 +14,8 @@ jobs:
 
       - name: Action
         uses: actions/checkout@v4
+        with:
+          hola: 12
 
       - name: Working dir After checkout
         run: ls -al
@@ -28,6 +30,6 @@ jobs:
       - name: Hola Mundo segundo
         if: false          #Este paso no se ejecutará porque la condición es falsa
         run: echo "Hola Mundo segundo, este step no se ejecutara!"
-        
+
       - name: Hola Mundo segundo 2
         run: echo "Hola Mundo segundo 2, este si se ejecuta! ${{ github.ref }}"
