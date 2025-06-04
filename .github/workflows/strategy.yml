@@ -1,0 +1,16 @@
+name: Deploy to Server
+
+on: push
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # os: [ubuntu-latest, windows-latest, macos-latest]  #Definimos una matriz de sistemas operativos, el job se ejecutará en cada uno de ellos
+        message: ["Hola Mundo", "Hola GitHub Actions", "Hola Matrix"]  #Definimos una matriz de mensajes, el job se ejecutará para cada mensaje
+
+    steps:
+      - name: Print message
+        run: echo "${{ matrix.message }}"  #Imprimimos el mensaje de la matriz
