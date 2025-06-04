@@ -10,7 +10,11 @@ jobs:
       matrix:
         # os: [ubuntu-latest, windows-latest, macos-latest]  #Definimos una matriz de sistemas operativos, el job se ejecutará en cada uno de ellos
         message: ["Hola Mundo", "Hola GitHub Actions", "Hola Matrix"]  #Definimos una matriz de mensajes, el job se ejecutará para cada mensaje
+        message2: [1,2]
 
     steps:
       - name: Print message
         run: echo "${{ matrix.message }}"  #Imprimimos el mensaje de la matriz
+
+      - name: Print message2
+        run: echo "${{ matrix.message2 }}"  #Imprimimos el mensaje2 de la matriz
